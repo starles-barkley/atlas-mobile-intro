@@ -1,10 +1,11 @@
+import { useActivitiesContext } from "@/components/ActivitiesProvider";
 import { useActivities } from "@/hooks/useActivities";
 import { Link, router } from "expo-router";
 import { act } from "react";
 import { Alert, Pressable, StyleSheet, Text, View } from "react-native";
 
 export default function Index() {
-  const { activities } = useActivities();
+  const { activities } = useActivitiesContext();
   return (
     <View style={styles.container}>
       {activities.map((activity) => (

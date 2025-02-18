@@ -17,9 +17,9 @@ export function useActivities() {
     return db.getAllSync<Activity>("SELECT * FROM activities");
   }
 
-  function insertActivity(steps:number, date: Date) {
+  function insertActivity(steps: number, date: Date) {
     db.execSync(
-      "INSERT INTO activities (steps, date) VALUES (${steps}, ${date.getTime()})"
+      `INSERT INTO activities (steps, date) VALUES (${steps}, ${date.getTime()})`
     );
     reload();
   }
