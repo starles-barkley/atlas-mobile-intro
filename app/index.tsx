@@ -1,12 +1,18 @@
+import { useActivities } from "@/hooks/useActivities";
 import { Link, router } from "expo-router";
+import { act } from "react";
 import { Alert, Pressable, StyleSheet, Text, View } from "react-native";
 
 export default function Index() {
+  const { activities } = useActivities();
   return (
     <View style={styles.container}>
-      <Text style={styles.heading}>
-        Edit app/index.tsx to edit this screen.
-      </Text>
+      {activities.map((activity) => (
+        <Text key={activity.id}>
+          {activity.steps} steps on{" "}
+          {new Date(activity.date).toLocaleDateString()}
+        </Text>
+      ))}
       <Link style={styles.button} href={"/add-activity-screen"} replace>
         <Text style={styles.buttonText}>Add Activity</Text>
       </Link>
