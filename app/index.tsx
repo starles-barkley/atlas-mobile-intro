@@ -3,17 +3,20 @@ import { useActivities } from "@/hooks/useActivities";
 import { Link, router } from "expo-router";
 import { act } from "react";
 import { Alert, Pressable, StyleSheet, Text, View } from "react-native";
+import { FlashList } from "@shopify/flash-list";
+import { Activity } from "@/components/Activity";
 
 export default function Index() {
   const { activities } = useActivitiesContext();
   return (
     <View style={styles.container}>
-      {activities.map((activity) => (
-        <Text key={activity.id}>
-          {activity.steps} steps on{" "}
-          {new Date(activity.date).toLocaleDateString()}
-        </Text>
-      ))}
+      <View style={styles.list}>
+       <FlashList
+          renderItem={({ item }) => (<Activity activity={item} />)}
+          data={activities}
+          estimatedItemSize={50}
+        />
+      </View>
       <Link style={styles.button} href={"/add-activity-screen"} replace>
         <Text style={styles.buttonText}>Add Activity</Text>
       </Link>
@@ -39,4 +42,7 @@ const styles = StyleSheet.create({
   buttonText: {
     color: "white",
   },
+  list: {
+
+  }
 })
