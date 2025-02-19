@@ -1,17 +1,20 @@
+// index.tsx
 import { useActivitiesContext } from "@/components/ActivitiesProvider";
 import { Link } from "expo-router";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import { FlashList } from "@shopify/flash-list";
-import { Activity } from "@/components/Activity";
+import SwipeableActivity from "@/components/SwipeableActivity";
 
 export default function Index() {
-  const { activities, deleteAllActivities } = useActivitiesContext();
+  const { activities, deleteActivity, deleteAllActivities } = useActivitiesContext();
 
   return (
     <View style={styles.container}>
       <View style={styles.list}>
         <FlashList
-          renderItem={({ item }) => <Activity activity={item} />}
+          renderItem={({ item }) => (
+            <SwipeableActivity activity={item} deleteActivity={deleteActivity} />
+          )}
           data={activities}
           estimatedItemSize={50}
         />
@@ -35,7 +38,7 @@ const styles = StyleSheet.create({
   list: {
     flex: 1,
     width: "100%",
-  },  
+  },
   button: {
     backgroundColor: "#1ED2AF",
     padding: 16,

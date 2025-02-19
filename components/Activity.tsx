@@ -1,4 +1,4 @@
-import { Activity as ActivityType } from "@/hooks/useActivities"
+import { ActivityType } from "@/hooks/useActivities";
 import { StyleSheet, Text, View } from "react-native"
 
 export type ActivityProps = {
