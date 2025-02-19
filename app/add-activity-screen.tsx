@@ -4,18 +4,15 @@ import { useState } from "react";
 import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 
 export default function AddActivityScreen() {
-  // Use a string state for text input
   const [stepsText, setStepsText] = useState("");
   const { insertActivity } = useActivitiesContext();
 
   const handleAddActivity = () => {
-    // Convert to number before inserting
     const steps = parseInt(stepsText, 10);
     if (!isNaN(steps)) {
       insertActivity(steps, new Date());
       router.push("/");
     } else {
-      // Optionally, handle the case where conversion fails
       console.warn("Please enter a valid number for steps");
     }
   };
@@ -43,6 +40,7 @@ export default function AddActivityScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: "#FEF9E6",
     justifyContent: "center",
     alignItems: "center",
     padding: 16,

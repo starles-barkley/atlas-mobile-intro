@@ -15,7 +15,6 @@ export function ActivitiesProvider({ children }: { children: React.ReactNode }) 
   );
 }
 
-// Add this custom hook export:
 export function useActivitiesContext() {
   const context = useContext(ActivitiesContext);
   if (!context) {
