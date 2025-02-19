@@ -22,7 +22,7 @@ export default function AddActivityScreen() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.heading}>Add Activity Screen</Text>
+      <Text style={styles.heading}>Add Activity</Text>
       <TextInput
         style={styles.input}
         placeholder="Enter Steps"
@@ -63,7 +63,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#1ED2AF",
     padding: 16,
     width: "100%",
-    marginBottom: 16,
     alignItems: "center",
   },
   button: {
@@ -74,5 +73,6 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: "white",
+    textAlign: "center",
   },
 });

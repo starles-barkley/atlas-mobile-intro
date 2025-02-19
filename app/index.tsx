@@ -1,18 +1,17 @@
 import { useActivitiesContext } from "@/components/ActivitiesProvider";
-import { useActivities } from "@/hooks/useActivities";
-import { Link, router } from "expo-router";
-import { act } from "react";
-import { Alert, Pressable, StyleSheet, Text, View } from "react-native";
+import { Link } from "expo-router";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 import { FlashList } from "@shopify/flash-list";
 import { Activity } from "@/components/Activity";
 
 export default function Index() {
-  const { activities } = useActivitiesContext();
+  const { activities, deleteAllActivities } = useActivitiesContext();
+
   return (
     <View style={styles.container}>
       <View style={styles.list}>
-       <FlashList
-          renderItem={({ item }) => (<Activity activity={item} />)}
+        <FlashList
+          renderItem={({ item }) => <Activity activity={item} />}
           data={activities}
           estimatedItemSize={50}
         />
@@ -20,6 +19,9 @@ export default function Index() {
       <Link style={styles.button} href={"/add-activity-screen"} replace>
         <Text style={styles.buttonText}>Add Activity</Text>
       </Link>
+      <Pressable style={styles.deleteButton} onPress={deleteAllActivities}>
+        <Text style={styles.buttonText}>Delete All Activities</Text>
+      </Pressable>
     </View>
   );
 }
@@ -27,22 +29,29 @@ export default function Index() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: "center",
     alignItems: "center",
   },
-  heading: {
-    fontSize: 24,
-  },
+  list: {
+    flex: 1,
+    width: "100%",
+  },  
   button: {
     backgroundColor: "#1ED2AF",
     padding: 16,
     width: "100%",
     textAlign: "center",
+    marginTop: 16,
+  },
+  deleteButton: {
+    backgroundColor: "#D00414",
+    padding: 16,
+    width: "100%",
+    textAlign: "center",
+    marginTop: 8,
   },
   buttonText: {
     color: "white",
+    textAlign: "center",
   },
-  list: {
-
-  }
-})
+});
